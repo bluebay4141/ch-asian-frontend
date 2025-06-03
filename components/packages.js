@@ -53,6 +53,8 @@ function Packages() {
         }
         const data = await response.json();
 
+        console.log('API called at:', new Date().toISOString());
+
         setPackages(data.packages);
       } catch (error) {
         setError(error.message);
@@ -170,3 +172,5 @@ function Packages() {
 }
 
 export default Packages
+
+export const revalidate = 60;

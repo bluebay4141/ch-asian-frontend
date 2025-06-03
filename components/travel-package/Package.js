@@ -117,8 +117,6 @@ function TravelPackage() {
   const searchParams = useSearchParams();
   const packageId = searchParams.get('packageId');
 
-  console.log(packageId)
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [packageData, setPackageData] = useState([]);
@@ -645,3 +643,5 @@ const starRating = <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13
 </svg>
 
 export default TravelPackage
+
+export const revalidate = 60;
