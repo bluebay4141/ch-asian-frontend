@@ -1,4 +1,8 @@
 "use client"
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 60;
+
 import Link from "next/link";
 import Image from "next/image";
 
@@ -143,7 +147,7 @@ export default function Post() {
 
     setIsLoading(false)
   };
-  
+
   useEffect(() => {
     fetchPackages();
     const interval = setInterval(fetchPackages, 5000);
@@ -540,5 +544,3 @@ const polygonFaqUp = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="
 const polygonFaqDown = <svg xmlns="http://www.w3.org/2000/svg" width="16" height="10" viewBox="0 0 16 10" fill="none">
 <path d="M8 9.5L0.205773 0.499999L15.7942 0.5L8 9.5Z" fill="#464646"/>
 </svg>
-
-export const revalidate = 60;
