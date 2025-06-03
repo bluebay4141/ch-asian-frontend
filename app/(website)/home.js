@@ -132,25 +132,19 @@ export default function Post() {
   useEffect(() => {
     const fetchPackages = async () => {
       setIsLoading(true)
-  
-      try {
-        const response = await fetch('/api/fetchPackages');
-        if (!response.ok) {
-          throw new Error('Failed to fetch packages');
-        }
-        const data = await response.json();
-  
-        console.log('API called at:', new Date().toISOString());
-  
-        setPackages(data.packages);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setIsLoading(false)
-      }
+
+      const response = await fetch('/api/fetchPackages');
+      const data = await response.json();
+
+      setPackages(data.packages);
+      setIsLoading(false)
     };
-  
+
     fetchPackages();
+
+    const interval = setInterval(fetchPackages, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
