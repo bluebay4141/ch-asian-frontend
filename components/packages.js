@@ -43,31 +43,28 @@ function Packages() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    let isMounted = true;
     const fetchPackages = async () => {
-      setIsLoading(true)
-
       try {
         const response = await fetch('/api/fetchPackages');
-        if (!response.ok) {
-          throw new Error('Failed to fetch packages');
-        }
+        if (!response.ok) throw new Error('Failed to fetch packages');
         const data = await response.json();
-
-        console.log('API called at:', new Date().toISOString());
-
-        setPackages(data.packages);
+        if (isMounted) {
+          setPackages(data.packages);
+        }
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setIsLoading(false)
+        if (isMounted) setError(error.message);
       }
     };
-
-    setTimeout(() => {
+    fetchPackages(); // initial fetch
+    const interval = setInterval(() => {
+      console.log('Polling at:', new Date().toISOString());
       fetchPackages();
-    }, 60)
-
-    fetchPackages();
+    }, 5000); // every 5 seconds
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, []);
   
   console.log(packages, 'pack')
