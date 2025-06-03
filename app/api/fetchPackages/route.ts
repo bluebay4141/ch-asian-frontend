@@ -6,7 +6,7 @@ import { desc } from 'drizzle-orm';
 export async function GET(req: NextRequest) {
   try {
     const db = getDb();
-    
+
     const packages = await db.select().from(travelPackage).orderBy(desc(travelPackage.date));
 
     const response = NextResponse.json({ packages });
