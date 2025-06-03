@@ -53,7 +53,6 @@ function Packages() {
         }
         const data = await response.json();
 
-        console.log('API called at:', new Date().toISOString());
         setPackages(data.packages);
       } catch (error) {
         setError(error.message);
@@ -64,8 +63,6 @@ function Packages() {
 
     fetchPackages();
   }, []);
-
-  console.log(packages)
 
   return (
         <>
@@ -172,37 +169,4 @@ function Packages() {
   )
 }
 
-const travelPackages = [
-  {
-    image: whaleWatchingImg,
-    title: "Whale Watching Tour In Sri Lanka (Mirissa, Colombo)",
-    days: "4 Days Trip",
-    price: "$135.00",
-    routeLink: "whale-watching-tour-sri-lanka"
-  },
-  {
-    image: nuwaraEliyaImg,
-    title: "Round Tour In Sri Lanka (Colombo, Nuwara Eliya, Bentota)",
-    days: "4 Days Trip",
-    price: "$162.00",
-    routeLink: "round-tour-in-sri-lanka"
-  },
-  {
-    image: honeymoonImg,
-    title: "Honeymoon In Sri Lanka (Kandy, Nuwara Eliya, Bentota, Colombo)",
-    days: "7 Days Trip",
-    price: "$470.00",
-    routeLink: "honeymoon-in-sri-lanka-travel-packages"
-  },
-  {
-    image: vishnuImg,
-    title: "Ramayana Trail (Trincomalee, Kandy, Nuwara Eliya, Colombo)",
-    days: "6 Days Trip",
-    price: "$235.00",
-    routeLink: "ramayanaya-trail-sri-lanka-tour"
-  }
-]
-
 export default Packages
-
-export const revalidate = 60;
