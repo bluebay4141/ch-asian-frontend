@@ -52,6 +52,8 @@ function Packages() {
           throw new Error('Failed to fetch packages');
         }
         const data = await response.json();
+
+        console.log('API called at:', new Date().toISOString());
         setPackages(data.packages);
       } catch (error) {
         setError(error.message);
@@ -62,6 +64,8 @@ function Packages() {
 
     fetchPackages();
   }, []);
+
+  console.log(packages)
 
   return (
         <>
@@ -200,3 +204,5 @@ const travelPackages = [
 ]
 
 export default Packages
+
+export const revalidate = 60;
