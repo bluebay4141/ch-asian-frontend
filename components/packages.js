@@ -63,6 +63,10 @@ function Packages() {
       }
     };
 
+    setTimeout(() => {
+      fetchPackages();
+    }, 60)
+
     fetchPackages();
   }, []);
   
