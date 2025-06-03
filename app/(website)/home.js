@@ -246,7 +246,7 @@ export default function Post() {
           </p>
         </div>
 
-      <Packages packages={packages} error={error} isLoading={isLoading} />
+      <Packages />
 
       </section>
 
