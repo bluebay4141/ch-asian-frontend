@@ -1,0 +1,197 @@
+html {
+  scroll-behavior: smooth
+}
+
+.token.tag,
+.token.class-name,
+.token.selector,
+.token.selector .class,
+.token.function {
+  @apply text-fuchsia-500;
+}
+
+.token.attr-name,
+.token.keyword,
+.token.rule,
+.token.operator,
+.token.pseudo-class,
+.token.important {
+  @apply text-cyan-500;
+}
+
+.token.attr-value,
+.token.class,
+.token.string,
+.token.number,
+.token.unit,
+.token.color {
+  @apply text-blue-500;
+}
+
+.token.module {
+  @apply text-cyan-400;
+}
+
+.token.punctuation,
+.token.property {
+  @apply text-slate-500;
+}
+
+.token.atapply .token:not(.rule):not(.important) {
+  color: inherit;
+}
+
+.language-shell .token:not(.comment) {
+  color: inherit;
+}
+
+.language-css .token.function {
+  color: inherit;
+}
+
+.token.comment {
+  @apply text-gray-500;
+}
+
+.token.deleted:not(.prefix) {
+  @apply relative block -mx-4 px-4;
+}
+
+.token.deleted:not(.prefix)::after {
+  content: "";
+  @apply pointer-events-none absolute inset-0 block bg-rose-400 bg-opacity-25;
+}
+
+.token.deleted.prefix {
+  @apply text-gray-400 select-none;
+}
+
+.token.inserted:not(.prefix) {
+  @apply block bg-emerald-700 bg-opacity-50 -mx-4 px-4;
+}
+
+.token.inserted.prefix {
+  @apply text-emerald-200 text-opacity-75 select-none;
+}
+
+.refractor-marker {
+  @apply bg-sky-300/10;
+}
+
+/* @font-face {
+  font-family: "HelveticaNow";
+  src: url("../public//fonts/Helvetica-Now-Black.ttf");
+} */
+
+@font-face {
+  font-family: "Calistoga-Regular";
+  src: url("../public//fonts/Calistoga-Regular.ttf");
+}
+
+.swiper-pagination {
+  display: inline-flex!important;
+  width: auto!important;
+  left: 50%!important;
+  transform: translateX(-50%)!important;
+  background-color: #18181B;
+  border-radius: 999px;
+  height: 24px!important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #FFFFFF!important;
+}
+
+.swiper-pagination-bullet {
+  background: #FFFFFFB2!important;
+}
+
+.trip-higlight p {
+  font-size: 18px!important;
+  line-height: 24px!important;
+  color: #464646!important;
+  font-weight: 300!important;
+}
+
+@media (max-width: 640px) {
+  .trip-higlight p {
+    font-size: 16px !important;
+    line-height: 22px !important;
+    color: #464646!important;
+  }
+}
+
+.trip-day p, h3 {
+  font-size: 15px!important;
+  line-height: 22.5px!important;
+  color: #464646!important;
+  font-weight: 300!important;
+}
+
+.trip-day h3 strong {
+  font-weight: 500!important;
+}
+
+.trip-day ul {
+  list-style: disc!important;
+  margin-left: 20px!important;
+}
+
+.trip-day ol {
+  list-style: decimal!important;
+  margin-left: 20px!important;
+}
+
+.trip-day ol li::marker {
+  font-weight: 300!important;
+}
+
+.inclusions-list ul li {
+  position: relative;
+  margin-bottom: 24px;
+  padding-left: 38px;
+}
+
+.inclusions-list ol {
+  list-style: decimal!important;
+  margin-bottom: 24px;
+  padding-left: 54px;
+}
+
+.inclusions-list ul li::before {
+  content: '';
+  background: url('../public/img/Checkmark.png') no-repeat center center;
+  background-size: contain;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.exclusions-list ul li {
+  position: relative;
+  margin-bottom: 24px;
+  padding-left: 38px;
+}
+
+.exclusions-list ul li::before {
+  content: '';
+  background: url('../public/img/Cancel.png') no-repeat center center;
+  background-size: contain;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.exclusions-list ol {
+  list-style: decimal!important;
+  margin-bottom: 24px;
+  padding-left: 54px;
+}
+
