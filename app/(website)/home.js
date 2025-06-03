@@ -129,21 +129,24 @@ export default function Post() {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false)
   
+  const fetchPackages = async () => {
+    setIsLoading(true)
+    const response = await fetch('/api/fetchPackages', { cache: 'no-store' });
+    const data = await response.json();
+    setPackages(prev => {
+      if (JSON.stringify(prev) !== JSON.stringify(data.packages)) {
+        console.log('New packages data:', data.packages);
+        return data.packages;
+      }
+      return prev;
+    });
+
+    setIsLoading(false)
+  };
+  
   useEffect(() => {
-    const fetchPackages = async () => {
-      setIsLoading(true)
-
-      const response = await fetch('/api/fetchPackages');
-      const data = await response.json();
-
-      setPackages(data.packages);
-      setIsLoading(false)
-    };
-
     fetchPackages();
-
     const interval = setInterval(fetchPackages, 5000);
-
     return () => clearInterval(interval);
   }, []);
 
