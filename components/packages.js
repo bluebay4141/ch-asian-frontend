@@ -1,3 +1,8 @@
+'use client'
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 60;
+
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +26,7 @@ import leftArrowIcon from "../public/img/left-arrow-slider.svg"
 import rightArrowIcon from "../public/img/right-arrow-slider.svg"
 import booknowBtn from "../public/img/booknow-btn.svg"
 
-function Packages({packages, error, isLoading}) {
+function Packages() {
   const swiperRef = useRef(null);
 
   const goNext = () => {
@@ -37,6 +42,36 @@ function Packages({packages, error, isLoading}) {
   };
 
   const router = useRouter();
+
+  const [packages, setPackages] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
+    
+  const fetchPackages = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/fetchPackages', { cache: 'no-store' });
+      if (!response.ok) throw new Error("Failed to fetch");
+      const data = await response.json();
+      setPackages((prev) => {
+        if (JSON.stringify(prev) !== JSON.stringify(data.packages)) {
+          return data.packages;
+        }
+        return prev;
+      });
+    } catch (err) {
+      setError("Something went wrong. Please try again later.");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+  useEffect(() => {
+    fetchPackages();
+    const interval = setInterval(fetchPackages, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
         <>

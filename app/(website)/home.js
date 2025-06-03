@@ -1,8 +1,5 @@
 "use client"
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 60;
-
 import Link from "next/link";
 import Image from "next/image";
 
@@ -128,31 +125,6 @@ export default function Post() {
 
   const searchParams = useSearchParams();
   const packageId = searchParams.get('packageId');
-
-  const [packages, setPackages] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false)
-  
-  const fetchPackages = async () => {
-    setIsLoading(true)
-    const response = await fetch('/api/fetchPackages', { cache: 'no-store' });
-    const data = await response.json();
-    setPackages(prev => {
-      if (JSON.stringify(prev) !== JSON.stringify(data.packages)) {
-        console.log('New packages data:', data.packages);
-        return data.packages;
-      }
-      return prev;
-    });
-
-    setIsLoading(false)
-  };
-
-  useEffect(() => {
-    fetchPackages();
-    const interval = setInterval(fetchPackages, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <Container>
