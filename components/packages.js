@@ -87,6 +87,7 @@ function Packages({packages, error, isLoading}) {
                   spaceBetween: 32,
                 },
               }}
+              key={packages.map(p => p.id).join(',')}
             >
               {packages?.map((travelPack) => (
                 <SwiperSlide key={travelPack?.id} className="h-full">
