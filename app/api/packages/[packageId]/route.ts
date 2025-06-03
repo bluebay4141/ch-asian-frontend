@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/db/db'; 
+import { getDb } from '@/lib/db/db'; 
 import { eq } from 'drizzle-orm';
 import { travelPackage } from '@/lib/db/schema';
 
@@ -21,6 +21,8 @@ export async function GET(req: Request, { params }: { params: { packageId: strin
 
 async function getPackageById(packageId: string) {
   try {
+    const db = getDb();
+
     const packages = await db
       .select()
       .from(travelPackage)

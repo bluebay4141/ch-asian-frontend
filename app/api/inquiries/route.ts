@@ -1,10 +1,12 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { db } from '@/lib/db/db';
+import { getDb } from '@/lib/db/db';
 import { inquiries } from '@/lib/db/schema';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function POST(req: Request) {
   try {
+    const db = getDb();
+
     const body = await req.json();
 
     const {

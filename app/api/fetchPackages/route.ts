@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/lib/db/db';
+import { getDb } from '@/lib/db/db';
 import { travelPackage } from '@/lib/db/schema';
 import { desc } from 'drizzle-orm';
 
 export async function GET(req: NextRequest) {
   try {
+    const db = getDb();
+    
     const packages = await db.select().from(travelPackage).orderBy(desc(travelPackage.date));
 
     const response = NextResponse.json({ packages });
