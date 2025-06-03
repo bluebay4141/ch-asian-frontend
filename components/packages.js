@@ -21,7 +21,7 @@ import leftArrowIcon from "../public/img/left-arrow-slider.svg"
 import rightArrowIcon from "../public/img/right-arrow-slider.svg"
 import booknowBtn from "../public/img/booknow-btn.svg"
 
-function Packages() {
+function Packages({packages, error, isLoading}) {
   const swiperRef = useRef(null);
 
   const goNext = () => {
@@ -37,37 +37,6 @@ function Packages() {
   };
 
   const router = useRouter();
-
-  const [packages, setPackages] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    let isMounted = true;
-    const fetchPackages = async () => {
-      try {
-        const response = await fetch('/api/fetchPackages');
-        if (!response.ok) throw new Error('Failed to fetch packages');
-        const data = await response.json();
-        if (isMounted) {
-          setPackages(data.packages);
-        }
-      } catch (error) {
-        if (isMounted) setError(error.message);
-      }
-    };
-    fetchPackages(); // initial fetch
-    const interval = setInterval(() => {
-      console.log('Polling at:', new Date().toISOString());
-      fetchPackages();
-    }, 5000); // every 5 seconds
-    return () => {
-      isMounted = false;
-      clearInterval(interval);
-    };
-  }, []);
-  
-  console.log(packages, 'pack')
 
   return (
         <>

@@ -125,7 +125,33 @@ export default function Post() {
   const searchParams = useSearchParams();
   const packageId = searchParams.get('packageId');
 
-  console.log(packageId)
+  const [packages, setPackages] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
+  
+  useEffect(() => {
+    const fetchPackages = async () => {
+      setIsLoading(true)
+  
+      try {
+        const response = await fetch('/api/fetchPackages');
+        if (!response.ok) {
+          throw new Error('Failed to fetch packages');
+        }
+        const data = await response.json();
+  
+        console.log('API called at:', new Date().toISOString());
+  
+        setPackages(data.packages);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false)
+      }
+    };
+  
+    fetchPackages();
+  }, []);
 
   return (
     <Container>
@@ -247,7 +273,7 @@ export default function Post() {
           </p>
         </div>
 
-      <Packages />
+      <Packages packages={packages} error={error} isLoading={isLoading} />
 
       </section>
 
