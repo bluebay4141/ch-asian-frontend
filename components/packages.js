@@ -65,6 +65,8 @@ function Packages() {
 
     fetchPackages();
   }, []);
+  
+  console.log(packages, 'pack')
 
   return (
         <>
@@ -174,3 +176,16 @@ function Packages() {
 export default Packages
 
 export const revalidate = 60;
+
+// hello
+// hello
+// hello
+// hello
+// hello
+// hello
+// hello
+// hello
+// hello
+// hello
+// hello
+// hello
