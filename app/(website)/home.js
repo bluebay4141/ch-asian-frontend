@@ -63,7 +63,7 @@ import { useSearchParams } from "next/navigation";
 
 const serviceImage1 = "https://cdn.pixabay.com/photo/2021/12/27/08/37/package-6896557_640.jpg"
 
-export default function Post() {
+export default function Post({packages}) {
   const [curOpen, setCurOpen] = useState(0);
   const packagesRef= useRef()
   const serviceRef = useRef()
@@ -126,39 +126,6 @@ export default function Post() {
 
   const searchParams = useSearchParams();
   const packageId = searchParams.get('packageId');
-
-  const [packages, setPackages] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false)
-      
-  const fetchPackages = async () => {
-    setIsLoading(true)
-    try {
-      const response = await fetch('/api/fetchPackages?buildCache=false', { cache: 'no-store' });
-      if (!response.ok) throw new Error("Failed to fetch");
-      const data = await response.json();
-      setPackages((prev) => {
-        if (JSON.stringify(prev) !== JSON.stringify(data.packages)) {
-          return data.packages;
-        }
-        return prev;
-      });
-
-      const now = new Date();
-      const formatted = format(now, 'yyyy-MM-dd HH:mm:ss');
-
-      console.log(formatted, 'date')
-    } catch (err) {
-      setError("Something went wrong. Please try again later.");
-      console.error(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-    
-  useEffect(() => {
-    fetchPackages();
-  }, []);
 
   console.log(packages, 'pack')
 
@@ -282,7 +249,7 @@ export default function Post() {
           </p>
         </div>
 
-      <Packages packages={packages} isLoading={isLoading} error={error} />
+      <Packages packages={packages} />
 
       </section>
 
