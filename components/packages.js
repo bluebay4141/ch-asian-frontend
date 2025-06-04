@@ -23,7 +23,7 @@ import leftArrowIcon from "../public/img/left-arrow-slider.svg"
 import rightArrowIcon from "../public/img/right-arrow-slider.svg"
 import booknowBtn from "../public/img/booknow-btn.svg"
 
-function Packages({ packages, isLoading, error }) {
+function Packages({ packages, isLoading = false}) {
   const swiperRef = useRef(null);
 
   const goNext = () => {
