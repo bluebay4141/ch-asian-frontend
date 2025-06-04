@@ -1,5 +1,3 @@
-import { format } from 'date-fns';
-
 export const dynamic = 'force-dynamic';
 
 import HomePage from "./home";
@@ -15,9 +13,6 @@ async function fetchPackages() {
   }
 
   const data = await res.json();
-  const now = new Date();
-  const formatted = format(now, 'yyyy-MM-dd HH:mm:ss');
-  console.log(formatted, 'date');
 
   return data.packages;
 }
@@ -30,14 +25,5 @@ export default async function IndexPage() {
     return <div className='px-5 sm:px-33.25 py-10 text-red-500 text-base'>Failed to load packages.</div>;
   }
 
-  console.log(packages)
-
   return(<HomePage packages={packages} />)
 }
-
-// hello all
-// hello all
-// hello all
-// hello all
-// hello all
-// hello all
