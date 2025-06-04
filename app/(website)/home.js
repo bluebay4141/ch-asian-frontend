@@ -1,7 +1,5 @@
 "use client"
 
-export const revalidate = 60;
-
 import Link from "next/link";
 import Image from "next/image";
 import { format } from 'date-fns';
