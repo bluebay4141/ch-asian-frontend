@@ -1,7 +1,10 @@
 "use client"
 
+export const revalidate = 60;
+
 import Link from "next/link";
 import Image from "next/image";
+import { format } from 'date-fns';
 
 import Container from "@/components/container";
 import PostList from "@/components/postlist";
@@ -126,6 +129,41 @@ export default function Post() {
   const searchParams = useSearchParams();
   const packageId = searchParams.get('packageId');
 
+  const [packages, setPackages] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false)
+      
+  const fetchPackages = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch('/api/fetchPackages?buildCache=false', { cache: 'no-store' });
+      if (!response.ok) throw new Error("Failed to fetch");
+      const data = await response.json();
+      setPackages((prev) => {
+        if (JSON.stringify(prev) !== JSON.stringify(data.packages)) {
+          return data.packages;
+        }
+        return prev;
+      });
+
+      const now = new Date();
+      const formatted = format(now, 'yyyy-MM-dd HH:mm:ss');
+
+      console.log(formatted, 'date')
+    } catch (err) {
+      setError("Something went wrong. Please try again later.");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+    
+  useEffect(() => {
+    fetchPackages();
+  }, []);
+
+  console.log(packages, 'pack')
+
   return (
     <Container>
       <section className="relative sm:px-17.5">
@@ -246,7 +284,7 @@ export default function Post() {
           </p>
         </div>
 
-      <Packages />
+      <Packages packages={packages} isLoading={isLoading} error={error} />
 
       </section>
 
