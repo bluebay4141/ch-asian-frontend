@@ -1,4 +1,3 @@
-// app/api/fetchPackages/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/db/db';
 import { travelPackage } from '@/lib/db/schema';
