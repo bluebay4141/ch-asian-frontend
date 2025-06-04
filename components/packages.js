@@ -1,7 +1,7 @@
 'use client'
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 60;
+export const revalidate = 0;
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -50,7 +50,7 @@ function Packages() {
   const fetchPackages = async () => {
     setIsLoading(true)
     try {
-      const response = await fetch('/api/fetchPackages', { cache: 'no-store' });
+      const response = await fetch('/api/fetchPackages?buildCache=false', { cache: 'no-store' });
       if (!response.ok) throw new Error("Failed to fetch");
       const data = await response.json();
       setPackages((prev) => {
@@ -69,8 +69,6 @@ function Packages() {
   
   useEffect(() => {
     fetchPackages();
-    const interval = setInterval(fetchPackages, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   return (
