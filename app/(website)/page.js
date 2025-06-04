@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
 
+export const dynamic = 'force-dynamic';
+
 import HomePage from "./home";
 import { getAllPosts } from "@/lib/sanity/client";
 
@@ -30,4 +32,9 @@ export default async function IndexPage() {
   return(<HomePage packages={packages} />)
 }
 
-export const revalidate = 60
+// hello all
+// hello all
+// hello all
+// hello all
+// hello all
+// hello all
