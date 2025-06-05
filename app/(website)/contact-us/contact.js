@@ -25,6 +25,8 @@ import Services from "@/components/services";
 import Subscription from "@/components/subscription";
 
 export default function Contact({ settings }) {
+  const [isLoading, setIsLoading] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -33,6 +35,7 @@ export default function Contact({ settings }) {
   } = useForm();
 
   async function onSubmit(formData) { 
+    setIsLoading(true)
     await fetch('/api/send', {
       method: 'POST',
       headers: {
@@ -51,8 +54,10 @@ export default function Contact({ settings }) {
     }).then(() => {
       // Toast notification
       toast.success('Your email message has been sent successfully');
+      setIsLoading(false)
     });
 
+    setIsLoading(false)
     reset();
   }
 
@@ -132,7 +137,7 @@ export default function Contact({ settings }) {
           <textarea type="text" id="message" className="h-45 sm:h-35 p-5 rounded-xl text-sm sm:text-base leading-normal font-light text-hero-3 w-full mt-2.5 sm:mt-4" placeholder="Your Message" {...register('message',{required: true, minLength: 6})}/>
 
           <div className="flex items-center justify-end">
-            <button type="submit" className="py-4 bg-white rounded-full sm:rounded-lang font-Helvetica text-sm uppercase font-bold text-hero-1 w-2/4 sm:w-1/4 mt-4">Send</button>
+            <button type="submit" disabled={isLoading} className="py-4 bg-white rounded-full sm:rounded-lang font-Helvetica text-sm uppercase font-bold text-hero-1 w-2/4 sm:w-1/4 mt-4 disabled:opacity-50">Send</button>
           </div>
         </form>
       </section>

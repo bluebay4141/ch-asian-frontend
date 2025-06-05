@@ -65,6 +65,7 @@ const serviceImage1 = "https://cdn.pixabay.com/photo/2021/12/27/08/37/package-68
 
 export default function Post({packages}) {
   const [curOpen, setCurOpen] = useState(0);
+  const [isLoading, setIsLoading] = useState(false)
   const packagesRef= useRef()
   const serviceRef = useRef()
 
@@ -101,6 +102,7 @@ export default function Post({packages}) {
 
 
   async function onSubmit(formData) { 
+    setIsLoading(true)
     await fetch('/api/send', {
       method: 'POST',
       headers: {
@@ -119,15 +121,15 @@ export default function Post({packages}) {
     }).then(() => {
       // Toast notification
       toast.success('Your email message has been sent successfully');
+      setIsLoading(false)
     });
 
+    setIsLoading(false)
     reset();
   }
 
   const searchParams = useSearchParams();
   const packageId = searchParams.get('packageId');
-
-  console.log(packages, 'pack')
 
   return (
     <Container>
@@ -380,7 +382,9 @@ export default function Post({packages}) {
              
 
               <div className="flex items-center justify-end">
-                <button type="submit" className="py-4 bg-hero-1 rounded-full sm:rounded-lang font-Helvetica text-sm uppercase font-bold text-white w-2/4 sm:w-1/4 mt-4">Send</button>
+                <button type="submit" disabled={isLoading} className="py-4 bg-hero-1 rounded-full sm:rounded-lang font-Helvetica text-sm uppercase font-bold text-white w-2/4 sm:w-1/4 mt-4 disabled:opacity-50">
+                  Send
+                </button>
               </div>
             </form>
           </div>

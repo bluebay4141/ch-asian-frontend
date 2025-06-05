@@ -9,8 +9,8 @@ export async function POST(req: NextRequest) {
 
   try {
     const data = await resend.emails.send({
-      from: 'check@reservation.chasianholidays.com', // your verified domain
-        to: 'reservation@chasianholidays.com', // the email address you want to send a message
+      from: 'Inquiries <team@team.chasianholidays.com>', // your verified domain
+      to: 'sales@chasianholidays.com', // the email address you want to send a message
       subject: `New Booking!`,
       react: MessageUsEmail({ name, email, message , mobilenumber , page ,  traveldate ,travelercount}),
     });
