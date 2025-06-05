@@ -167,19 +167,48 @@ function TravelPackage() {
           ) : (
             <>
               <div>
-                <img src={packageData?.packageImages?.[0]?.url} alt="" className="rounded-lang cursor-pointer w-full object-cover" onClick={() => setShowGallery(true)} />
+                <img
+                  src={packageData?.packageImages?.[0]?.url}
+                  alt=""
+                  className="rounded-lang cursor-pointer w-full object-cover max-h-103 h-full"
+                  onClick={() => setShowGallery(true)}
+                />
               </div>
 
-              <div className="grid grid-cols-2 gap-2.5 h-full">
-                <img src={packageData?.packageImages?.[1]?.url} alt="" className="h-full rounded-lang cursor-pointer object-cover" onClick={() => setShowGallery(true)} />
-                <img src={packageData?.packageImages?.[2]?.url} alt="" className="h-full rounded-lang cursor-pointer object-cover" onClick={() => setShowGallery(true)} />
-                <img src={packageData?.packageImages?.[3]?.url} alt="" className="h-full rounded-lang cursor-pointer object-cover" onClick={() => setShowGallery(true)} />
-                <div className="relative">
-                  <button className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5" onClick={() => setShowGallery(true)}>
+              <div className="grid grid-cols-2 grid-rows-2 gap-2.5 h-full">
+                <img
+                  src={packageData?.packageImages?.[1]?.url}
+                  alt=""
+                  className="w-full h-full rounded-lang cursor-pointer object-cover"
+                  onClick={() => setShowGallery(true)}
+                />
+                <img
+                  src={packageData?.packageImages?.[2]?.url}
+                  alt=""
+                  className="w-full h-full rounded-lang cursor-pointer object-cover"
+                  onClick={() => setShowGallery(true)}
+                />
+                <img
+                  src={packageData?.packageImages?.[3]?.url}
+                  alt=""
+                  className="w-full h-full rounded-lang cursor-pointer object-cover"
+                  onClick={() => setShowGallery(true)}
+                />
+                
+                <div className="relative w-full h-full">
+                  <button
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5 z-10"
+                    onClick={() => setShowGallery(true)}
+                  >
                     <Image src={moreImages} alt="" />
                     <span className="text-sm text-white font-Helvetica font-normal">View More</span>
                   </button>
-                  <img src={packageData?.packageImages?.[4]?.url} alt="" className="h-full bg-gradient-to-r from-black via-black to-transparent bg-cover bg-no-repeat bg-center rounded-lang object-cover" />
+                  <img
+                    src={packageData?.packageImages?.[4]?.url}
+                    alt=""
+                    className="w-full h-full rounded-lang object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black via-black to-transparent opacity-50 rounded-lang" />
                 </div>
               </div>
             </>
