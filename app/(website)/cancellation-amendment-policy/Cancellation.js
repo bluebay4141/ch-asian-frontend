@@ -1,7 +1,7 @@
 function Cancellation({ settings }) {
   return (
     <article className="container mx-auto lg:px-25 my-10">
-      <p className="font-Helvetica text-base text-hero-3 font-semibold leading-5 text-center mb-5">
+      <p className="font-Helvetica text-base text-hero-3 font-semibold leading-5 mb-5">
         CANCELLATION & AMENDMENT POLICY
       </p>
       <p className="font-Helvetica text-base text-hero-3 font-normal leading-5">
