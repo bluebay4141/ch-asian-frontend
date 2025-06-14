@@ -18,9 +18,9 @@ export const metadata = {
 export default async function ArchivePage({ searchParams }) {
   return (
     <>
-      <Container className="relative mt-5">
+      <article className="container mx-auto lg:px-25">
         <h1 className="text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
-          Blog
+          All posts
         </h1>
         <div className="text-center">
           <p className="mt-2 text-lg">
@@ -32,7 +32,7 @@ export default async function ArchivePage({ searchParams }) {
           fallback={<Loading />}>
           <Blog searchParams={searchParams} />
         </Suspense>
-      </Container>
+      </article>
     </>
   );
 }
