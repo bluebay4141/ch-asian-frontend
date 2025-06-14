@@ -79,7 +79,13 @@ export default function Footer(props) {
                 <a href="#" className="font-Helvetica text-base leading-6 font-normal text-white">Packages</a>
               </li>
               <li>
-                <a href="#" className="font-Helvetica text-base leading-6 font-normal text-white">Agents Login</a>
+                <a href="https://ch-asian-backend.vercel.app/" className="font-Helvetica text-base leading-6 font-normal text-white" target="_blank" rel="noopener noreferrer">Agents Login</a>
+              </li>
+              <li>
+                <a href="/cancellation-amendment-policy" className="font-Helvetica text-base leading-6 font-normal text-white">Cancellation & Amendment Policy</a>
+              </li>
+              <li>
+                <a href="/terms-and-conditions" className="font-Helvetica text-base leading-6 font-normal text-white">Terms And Conditions</a>
               </li>
             </ul>
           </nav>
